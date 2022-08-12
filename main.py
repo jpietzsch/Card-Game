@@ -1,13 +1,8 @@
-from webbrowser import WindowsDefault
 import pygame, sys
 from button import Button
 
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
-
-pygame.mixer.music.load('sfx/MainBackgroundSound.wav')
-pygame.mixer.music.set_volume(.1)
-pygame.mixer.music.play(-1,0.0)
 
 click_sound = pygame.mixer.Sound('sfx/click_sound_menu.wav')
 click_sound.set_volume(0.2)
@@ -22,6 +17,11 @@ BG_PSC = pygame.image.load("skins/backgrounds/testbackground.png")
 BG_PSC = pygame.transform.scale(BG_PSC,( 1080, 620))
 def get_font(size): 
     return pygame.font.Font("assets/font.ttf", size)
+
+def bgmusic():
+    pygame.mixer.music.load('sfx/MainBackgroundSound.wav')
+    pygame.mixer.music.set_volume(.1)
+    pygame.mixer.music.play(-1,0.0)
 
 def play():
     while True:
@@ -140,11 +140,12 @@ def options():
                         fullscreen = False
                 if OPTIONS_MUSIC.checkForInput(OPTIONS_MOUSE_POS):
                     click_sound.play()
-                    if musictxt == False:
+                    if music == True:
                         pygame.mixer.music.fadeout(3000)
-                        musictxt = True
-                    elif  musictxt == True:
-                        musictxt = False
+                        music = False
+                    else:
+                        bgmusic()
+                        music = True
                                     
         pygame.display.update()
 
@@ -187,4 +188,5 @@ def main_menu():
 
         pygame.display.update()
 
+bgmusic()
 main_menu()
