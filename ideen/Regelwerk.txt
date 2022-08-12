@@ -1,0 +1,85 @@
+Karten-Fußball
+
+Spielfeld = 4x3 (Normal mit 10 Karten in jedem Stapel oder Verlängerung mit 5 Karten in jedem Stapel)
+	      Reihe 1	   Reihe 2     Reihe 3 	   Reihe 4
+	   Startreihe S1			Startreihe S2
+	   ______|_____
+          |	       |
+          V	       v
++---+      +----------+ +----------+ +---------+ +---------+      +---+
+|   |	   |          | |          | |         | |         |      |   |
+|   |	   |          | |          | |         | |         |      |   |
+|   | <    +----------+ +----------+ +---------+ +---------+    > |   |
++---+ |    +----------+ +----------+ +---------+ +---------+    | +---+
+Tor-Stapel |          | |          | |         | |         | Tor-Stapel
+Stapel S1  |          | |          | |         | |         |  Stapel S2
++---+ |    +----------+ +----------+ +---------+ +---------+    | +---+
+|10 | <    +----------+ +----------+ +---------+ +---------+    > |10 |
+|/5 |	   |          | |          | |         | |         |      |/5 |
+| X |	   |          | | 78910BDKA| |  ♦♥♠♣   | |         |      | X |
++---+	   +----------+ +----------+ +---------+ +---------+      +---+
+			     ^		  ^
+			     |		  |
+			    Höhe	Farbe
+
+Spielfeld = 2x3 (11 Meter)
+	      Reihe 1	   Reihe 2
+	   Startreihe S1  Startreihe S2
+	   ______|_____
+          |	       |
+          V	       v
++---+      +----------+ +----------+       +---+
+|   |	   |          | |          |       |   |
+|   |	   |          | |          |       |   |
+|   | <    +----------+ +----------+     > |   |
++---+ |    +----------+ +----------+     | +---+
+Tor-Stapel |          | |          |  Tor-Stapel
+Stapel S1  |          | |          |   Stapel S2
++---+ |    +----------+ +----------+     | +---+
+|   | <    +----------+ +----------+     > |   |
+| 5 |	   |          | |          |       | 5 |
+| X |	   |          | |          |       | X |
++---+	   +----------+ +----------+       +---+
+
+
+Am Anfang sind alle Karten verdeckt.
+Zuerst wird gewürfelt wer anfängt.
+
+1. Spieler 1 (S1) dreht seine erste Karte vom Stapel um. (mit Klick oder anderer Eingabe)
+   S1 dreht eine der 3 Karten von Reihe 1 um.
+
+   - Wenn Farbe oder Höhe übereinstimmen (Karte vom Stapel und Karte aus Reihe 1), wird eine Karte von Reihe 2 aufgedeckt usw.
+   bis auch die Farbe oder Höhe mit der Karte aus Reihe 4 übereinstimmt. Dann ist es ein Tor und die Karte wird auf den Tor-Stapel gelegt.
+
+   - Wenn Farbe oder Höhe nicht übereinstimmt, wird die Karte vom Stapel entfernt. Egal ob es in Reihe 1,2,3 oder 4 passiert.
+
+2. Spieler 2 (S2) dreht seine erste Karte vom Stapel um. (mit Klick oder anderer Eingabe)
+   S2 dreht eine der 3 Karten von Reihe 4 um.
+
+   - Wenn Farbe oder Höhe übereinstimmen (Karte vom Stapel und Karte aus Reihe 4), wird eine Karte von Reihe 3 aufgedeckt usw.
+   bis auch die Farbe oder Höhe mit der Karte aus Reihe 1 übereinstimmt. Dann ist es ein Tor und die Karte wird auf den Tor-Stapel gelegt.
+
+   - Wenn Farbe oder Höhe nicht übereinstimmt, wird die Karte vom Stapel entfernt. Egal ob es in Reihe 4,3,2 oder 1 passiert.
+
+Nachdem Spieler 1 und 2 jeweils eine Karte aufgdeckt haben wird wie folgt weiter gemacht:
+
+Spieler 1 und 2 wechseln sich jeweils ab und decken nacheinander 1 Karte von ihrem Stapel auf und überprüfen diese mit ihrer Startreihe.
+
+3. Wenn Farbe oder Höhe nicht mit den schon umgedrehten Karten in der aktuellen Reihe übereinstimmen,
+   muss man die nächste Karte der aktuellen Reihe umdrehen,
+   überprüfen und ggf. die Karte bei nicht Übereinstimmung weg legen oder bei Übereinstimmung die nächste Reihe überprüfen.
+   
+4. Wenn Farbe oder Höhe mit den schon umgedrehten Karten in der aktuellen Reihe übereinstimmen,
+   muss man in die nächste Reihe und dort wie bei 3. und 4. weiter machen.
+
+5. Eine Spielrunde ist zuende wenn beide Stapel geleert wurden.
+
+6. Wenn es nach 2 Spielrunden zum Unentschieden kommt, wird eine Verlängerung eingeleitet.
+
+7. Eine Verlängerung wird wie eine "normale" Spielrunde gespielt, nur mit dem Unterschied: beide Stapel bekommen nur 5 Karten.
+
+8. Wenn es nach der Verlängerung noch immer Unentschieden ist, wird 11 Meter eingeleitet.
+
+9. 11 Meter wird wie eine Verlängerung gespielt, nur mit dem Unterschied: es gibt nur 2 Reihen und nicht 4.
+
+10. 11 Meter wird solange gespielt, bis ein Sieger festgestellt werden kann. (1 Tor diverenz nach einer Spielrunde)
