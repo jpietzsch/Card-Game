@@ -146,6 +146,24 @@ def play_soccercards():
     R41 = 0
     R42 = 0
     R43 = 0
+    S1_R1 = 0
+    S1_R2 = 0
+    S1_R3 = 0
+    S1_R4 = 0
+    S2_R1 = 0
+    S2_R2 = 0
+    S2_R3 = 0
+    S2_R4 = 0
+    F_P1 = 0
+    F_P2 = 0
+    G_P1 = 0
+    G_P2 = 0
+    STEP_5 = False
+    STEP_6 = False
+    STEP_7 = False
+    STEP_8 = False
+    STEP_9 = False
+    STEP_10 = False
     CLICK = 0
     MOUSE_POS_P1 = False
     MOUSE_POS_P2 = False
@@ -162,7 +180,7 @@ def play_soccercards():
     MOUSE_POS_R31 = False
     MOUSE_POS_R32 = False
     MOUSE_POS_R33 = False
-#
+#Auslesen der Images mit und ohne Rotation
     def get_image(sheet, width, height, scale, color, x, y, symbol, value):
         image = pygame.Surface((width, height)).convert_alpha()
         image.blit(sheet, (0, 0), (x, y, width, height))
@@ -204,21 +222,13 @@ def play_soccercards():
     HERZ_6 = DEFHERZ_6(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 355, 110)
     '''
     HERZ_7 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 410, 110, "HERZ", 7)
-    
     HERZ_8 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 465, 110, "HERZ", 8)
-    
     HERZ_9 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 520, 110, "HERZ", 9)
-    
     HERZ_10 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 575, 110, "HERZ", 10)
-    
     HERZ_JACK = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 630, 110, "HERZ", 11)
-    
     HERZ_QUEEN = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 685, 110, "HERZ", 12)
-    
     HERZ_KING = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 740, 110, "HERZ", 13)
-    
     HERZ_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 110, "HERZ", 14)
-    
 ##################### KARO KARTEN ###########################
     '''KARO_2 = DEFKARO_2(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 135, 175)
     KARO_3 = DEFKARO_3(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 190, 175)
@@ -227,21 +237,13 @@ def play_soccercards():
     KARO_6 = DEFKARO_6(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 355, 175)
     '''
     KARO_7 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 410, 175, "KARO", 7)
-    
     KARO_8 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 465, 175, "KARO", 8)
-    
     KARO_9 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 520, 175, "KARO", 9)
-    
     KARO_10 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 575, 175, "KARO", 10)
-    
     KARO_JACK = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 630, 175, "KARO", 11)
-    
     KARO_QUEEN = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 685, 175, "KARO", 12)
-    
     KARO_KING = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 740, 175, "KARO", 13)
-    
     KARO_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 175, "KARO", 14)
-    
 ##################### KREUZ KARTEN ##########################
     '''KREUZ_2 = DEFKREUZ_2(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 135, 240)
     KREUZ_3 = DEFKREUZ_3(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 190, 240)
@@ -250,21 +252,13 @@ def play_soccercards():
     KREUZ_6 = DEFKREUZ_6(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 355, 240)
     '''
     KREUZ_7 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 410, 240, "KREUZ", 7)
-    
     KREUZ_8 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 465, 240, "KREUZ", 8)
-    
     KREUZ_9 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 520, 240, "KREUZ", 9)
-    
     KREUZ_10 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 575, 240, "KREUZ", 10)
-    
     KREUZ_JACK = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 630, 240, "KREUZ", 11)
-    
     KREUZ_QUEEN = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 685, 240, "KREUZ", 12)
-    
     KREUZ_KING = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 740, 240, "KREUZ", 13)
-    
     KREUZ_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 240, "KREUZ", 14)
-    
 ##################### PIK KARTEN ##########################
     '''PIK_2 = DEFPIK_2(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 135, 305)
     PIK_3 = DEFPIK_3(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 190, 305)
@@ -273,21 +267,13 @@ def play_soccercards():
     PIK_6 = DEFPIK_6(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 355, 305)
     '''
     PIK_7 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 410, 305, "PIK", 7)
-    
     PIK_8 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 465, 305, "PIK", 8)
-    
     PIK_9 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 520, 305, "PIK", 9)
-    
     PIK_10 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 575, 305, "PIK", 10)
-    
     PIK_JACK = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 630, 305, "PIK", 11)
-    
     PIK_QUEEN = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 685, 305, "PIK", 12)
-    
     PIK_KING = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 740, 305, "PIK", 13)
-    
     PIK_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 305, "PIK", 14)
-    
     #Liste wird erstellt und gemischt
     CARDS_32 = [HERZ_7, HERZ_8, HERZ_9, HERZ_10, HERZ_JACK, HERZ_QUEEN, HERZ_KING, HERZ_ASS,
             KARO_7, KARO_8, KARO_9, KARO_10, KARO_JACK, KARO_QUEEN, KARO_KING, KARO_ASS,
@@ -300,7 +286,7 @@ def play_soccercards():
     CARDS_TABLE2 = []
     CARDS_GOAL = []
     CARDS_FAIL = []
-
+#Abfrage ob Karten Rotiert werden müssen oder nicht
 ##################### HERZ KARTEN ###########################
     if HERZ_7 in CARDS_TABLE:
         HERZ_7 = get_image_rotate(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 410, 110, "HERZ", 7)
@@ -1202,6 +1188,8 @@ def play_soccercards():
     CHECKP2_K10_R43 = 0
     if CARDS_P2[9][1] == CARDS_TABLE2[11][1] or CARDS_P2[9][2] == CARDS_TABLE2[11][2]:
         CHECKP2_K10_R43 = 1
+    #if CHECKP2_K10_R41 == 1 and CHECKP2_K10_R42 == 0 and CHECKP2_K10_R43 == 0:
+     #   CHECKP2_K10_R4 = 1
 
     while True:
         BG_PSC_LOAD()
@@ -1210,16 +1198,6 @@ def play_soccercards():
         green = (0,255,0)
         blue = (0,0,255)
         white = (255,255,255)
-        S1_R1 = 0
-        S1_R2 = 0
-        S1_R3 = 0
-        S1_R4 = 0
-        STEP_5 = False
-        STEP_6 = False
-        STEP_7 = False
-        STEP_8 = False
-        STEP_9 = False
-        STEP_10 = False
         if P1 >= 10:
             P1 = 0
         if P2 >= 10:
@@ -1232,10 +1210,14 @@ def play_soccercards():
             if MOUSE_POS_P1 == True:#Image ändert sich, wenn mit Maus über Schaltfläche + klickt.
                 if CLICK == 5:
                     P1 = 1
-                    #print(P1)#gibt für kontrollzwecke P1 aus    
+                    #print(P1)#gibt für kontrollzwecke P1 aus
+                if CLICK == 5 and S1_R1 == 2 and P1 == 1:
+                    P1 = 2 
                 if CLICK != 0:
                     CLICK -= 1
         elif P1 == 0:
+            pygame.draw.rect(SCREEN, green,(50,486,130,184))
+        elif S1_R1 == 2 and P1 == 1:
             pygame.draw.rect(SCREEN, green,(50,486,130,184))
         else:
             pygame.draw.rect(SCREEN, blue,(50,486,130,184))
@@ -1245,11 +1227,13 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(1100,486,130,184))
             MOUSE_POS_P2 = True
             if MOUSE_POS_P2 == True:       
-                if CLICK == 5 and P1 == 1 and R11 == 1 or CLICK == 5 and P1 == 1 and R12 == 1 or CLICK == 5 and P1 == 1 and R13 == 1:
+                if CLICK == 5 and F_P1 == 1 and P2 == 0:
                     P2 = 1
                     #print(P2)      
                 if CLICK != 0:
                     CLICK -= 1
+        elif F_P1 == 1 and P2 == 0:
+                pygame.draw.rect(SCREEN, green,(1100,486,130,184))
         else:
             pygame.draw.rect(SCREEN, blue,(1100,486,130,184))
             MOUSE_POS_P2 = False
@@ -1311,32 +1295,41 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(208,134,184,130))
             MOUSE_POS_R11 = True
             if MOUSE_POS_R11 == True:
-                if CLICK == 5 and P1 == 1 and R12 == 0 and R13 == 0:
+                if CLICK == 5 and P1 == 1 and S1_R1 == 0 and F_P1 == 0:
                     R11 = 1
                     S1_R1 = 1
-                    #print(R11)      
+                    #print(R11)
+                    if CHECKP1_K1_R11 == 0:
+                        F_P1 = 1
+                        S1_R1 = 0
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 0:
-            if P1 == 1:
-                pygame.draw.rect(SCREEN, green,(208,454,184,130))
+        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0:
+                pygame.draw.rect(SCREEN, green,(208,134,184,130))
+        elif R11 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0:
+            pygame.draw.rect(SCREEN, red,(208,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(208,134,184,130))
             MOUSE_POS_R11 = False
-
         if 208 + 184 > PLAY_MOUSE_POS[0] > 208 and 294 + 130 > PLAY_MOUSE_POS[1] > 294:
             pygame.draw.rect(SCREEN, white,(208,294,184,130))
             MOUSE_POS_R12 = True
             if MOUSE_POS_R12 == True:
-                if CLICK == 5 and P1 == 1 and R11 == 0 and R13 == 0:
+                if CLICK == 5 and P1 == 1 and S1_R1 == 0 and F_P1 == 0:
                     R12 = 1
                     S1_R1 = 1
-                    #print(R12)      
+                    #print(R12)
+                    if CHECKP1_K1_R12 == 0:
+                        F_P1 = 1
+                        S1_R1 = 0
+     
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 0:
-            if P1 == 1:
-                pygame.draw.rect(SCREEN, green,(208,454,184,130))
+        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0:
+                pygame.draw.rect(SCREEN, green,(208,294,184,130))
+        elif R12 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0:
+            pygame.draw.rect(SCREEN, red,(208,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(208,294,184,130))
             MOUSE_POS_R12 = False
@@ -1345,15 +1338,20 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(208,454,184,130))
             MOUSE_POS_R13 = True
             if MOUSE_POS_R13 == True:
-                if CLICK == 5 and P1 == 1 and R11 == 0 and R12 == 0:
+                if CLICK == 5 and P1 == 1 and S1_R1 == 0 and F_P1 == 0:
                     R13 = 1
                     S1_R1 = 1
-                    #print(R13)      
+                    #print(R13)
+                    if CHECKP1_K1_R13 == 0:
+                        F_P1 = 1
+                        S1_R1 = 0
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 0:
-            if P1 == 1:
-                pygame.draw.rect(SCREEN, green,(208,454,184,130))
+        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0:
+            pygame.draw.rect(SCREEN, green,(208,454,184,130))
+        elif R13 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0:
+            pygame.draw.rect(SCREEN, red,(208,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(208,454,184,130))
             MOUSE_POS_R13 = False
@@ -1362,11 +1360,21 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(431,134,184,130))
             MOUSE_POS_R21 = True
             if MOUSE_POS_R21 == True:
-                if CLICK == 5 and R22 == 0 and R23 == 0:
+                if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0 and F_P1 == 0:
                     R21 = 1
-                    #print(R21)      
+                    S1_R2 = 1
+                    #print(R13)
+                    if CHECKP1_K1_R21 == 0:
+                        F_P1 = 1
+                        S1_R2 = 0
+                        S2_R2 = 1
+
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R2 == 0 and S1_R1 == 1 and F_P1 == 0:
+                pygame.draw.rect(SCREEN, green,(431,134,184,130))
+        elif R21 == 1 and F_P1 == 1 and P2 == 0 and S1_R3 == 0:
+            pygame.draw.rect(SCREEN, red,(431,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(431,134,184,130))
             MOUSE_POS_R21 = False
@@ -1375,11 +1383,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(431,294,184,130))
             MOUSE_POS_R22 = True
             if MOUSE_POS_R22 == True:
-                if CLICK == 5 and R21 == 0 and R23 == 0:
+                if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0:
                     R22 = 1
-                    #print(R22)      
+                    S1_R2 = 1
+                    #print(R22)
+                if CLICK == 5 and S1_R3 == 2 and R22 == 0 and S1_R2 == 1:
+                    R22 = 1
+                    S1_R2 = 2      
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R1 == 1 and S1_R2 == 0:
+                pygame.draw.rect(SCREEN, green,(431,294,184,130))
+        elif S1_R3 == 2 and R22 == 0 and S1_R2 == 1:
+            pygame.draw.rect(SCREEN, green,(431,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(431,294,184,130))
             MOUSE_POS_R22 = False
@@ -1388,11 +1404,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(431,454,184,130))
             MOUSE_POS_R23 = True
             if MOUSE_POS_R23 == True:
-                if CLICK == 5 and R21 == 0 and R22 == 0:
+                if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0:
                     R23 = 1
-                    #print(R23)      
+                    S1_R2 = 1
+                    #print(R23)
+                if CLICK == 5 and S1_R3 == 2 and R23 == 0 and S1_R2 == 1:
+                    R23 = 1
+                    S1_R2 = 2     
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R1 == 1 and S1_R2 == 0:
+                pygame.draw.rect(SCREEN, green,(431,454,184,130))
+        elif S1_R3 == 2 and R23 == 0 and S1_R2 == 1:
+            pygame.draw.rect(SCREEN, green,(431,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(431,454,184,130))
             MOUSE_POS_R23 = False
@@ -1401,11 +1425,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(669,134,184,130))
             MOUSE_POS_R31 = True
             if MOUSE_POS_R31 == True:
-                if CLICK == 5 and R32 == 0 and R33 == 0:
+                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0:
                     R31 = 1
-                    #print(R31)      
+                    S1_R3 = 1
+                    #print(R31)
+                if CLICK == 5 and S1_R4 == 2 and R31 == 0 and S1_R3 == 1:
+                    R31 = 1
+                    S1_R3 = 2      
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R2 == 1 and S1_R3 == 0:
+                pygame.draw.rect(SCREEN, green,(669,134,184,130))
+        elif S1_R4 == 2 and R31 == 0 and S1_R3 == 1:
+            pygame.draw.rect(SCREEN, green,(669,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(669,134,184,130))
             MOUSE_POS_R31 = False
@@ -1414,11 +1446,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(669,294,184,130))
             MOUSE_POS_R32 = True
             if MOUSE_POS_R32 == True:
-                if CLICK == 5 and R31 == 0 and R33 == 0:
+                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0:
                     R32 = 1
-                    #print(R32)      
+                    S1_R3 = 1
+                    #print(R32)
+                if CLICK == 5 and S1_R4 == 2 and R32 == 0 and S1_R3 == 1:
+                    R32 = 1
+                    S1_R3 = 2      
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R2 == 1 and S1_R3 == 0:
+                pygame.draw.rect(SCREEN, green,(669,294,184,130))
+        elif S1_R4 == 2 and R32 == 0 and S1_R3 == 1:
+            pygame.draw.rect(SCREEN, green,(669,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(669,294,184,130))
             MOUSE_POS_R32 = False
@@ -1427,11 +1467,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(669,454,184,130))
             MOUSE_POS_R33 = True
             if MOUSE_POS_R33 == True:
-                if CLICK == 5 and R31 == 0 and R32 == 0:
+                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0:
                     R33 = 1
-                    #print(R33)      
+                    S1_R3 = 1
+                    #print(R33)
+                if CLICK == 5 and S1_R4 == 2 and R33 == 0 and S1_R3 == 1:
+                    R33 = 1
+                    S1_R3 = 2
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R2 == 1 and S1_R3 == 0:
+                pygame.draw.rect(SCREEN, green,(669,454,184,130))
+        elif S1_R4 == 2 and R33 == 0 and S1_R3 == 1:
+            pygame.draw.rect(SCREEN, green,(669,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(669,454,184,130))
             MOUSE_POS_R33 = False
@@ -1440,11 +1488,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(892,134,184,130))
             MOUSE_POS_R41 = True
             if MOUSE_POS_R41 == True:
-                if CLICK == 5 and P2 == 1 and R42 == 0 and R43 == 0:
+                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0:
                     R41 = 1
-                    #print(R41)      
+                    S1_R4 = 1
+                    #print(R41)
+                if CLICK == 5 and P2 == 1 and R41 == 0 and S1_R4 == 1:
+                    R41 = 1
+                    S1_R4 = 2
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R3 == 1 and S1_R4 == 0:
+                pygame.draw.rect(SCREEN, green,(892,134,184,130))
+        elif P2 == 1 and R41 == 0 and S1_R4 == 1:
+                pygame.draw.rect(SCREEN, green,(892,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(892,134,184,130))
             MOUSE_POS_R41 = False
@@ -1453,11 +1509,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(892,294,184,130))
             MOUSE_POS_R42 = True
             if MOUSE_POS_R42 == True:
-                if CLICK == 5 and P2 == 1 and R41 == 0 and R43 == 0:
+                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0:
                     R42 = 1
-                    #print(R42)      
+                    S1_R4 = 1
+                    #print(R42)
+                if CLICK == 5 and P2 == 1 and R42 == 0 and S1_R4 == 1:
+                    R42 = 1
+                    S1_R4 = 2     
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R3 == 1 and S1_R4 == 0:
+                pygame.draw.rect(SCREEN, green,(892,294,184,130))
+        elif P2 == 1 and R42 == 0 and S1_R4 == 1:
+            pygame.draw.rect(SCREEN, green,(892,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(892,294,184,130))
             MOUSE_POS_R42 = False
@@ -1466,11 +1530,19 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(892,454,184,130))
             MOUSE_POS_R43 = True
             if MOUSE_POS_R43 == True:
-                if CLICK == 5 and P2 == 1 and R41 == 0 and R42 == 0:
+                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0:
                     R43 = 1
-                    #print(R43)      
+                    S1_R4 = 1
+                    #print(R43)
+                if CLICK == 5 and P2 == 1 and R43 == 0 and S1_R4 == 1:
+                    R43 = 1
+                    S1_R4 = 2
                 if CLICK != 0:
                     CLICK -= 1
+        elif S1_R3 == 1 and S1_R4 == 0:
+                pygame.draw.rect(SCREEN, green,(892,454,184,130))
+        elif P2 == 1 and R43 == 0 and S1_R4 == 1:
+            pygame.draw.rect(SCREEN, green,(892,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(892,454,184,130))
             MOUSE_POS_R43 = False        
@@ -1594,13 +1666,13 @@ def play_soccercards():
         elif R43 == 1:
             SCREEN.blit(CARDS_TABLE2[11][0], (894, 456))
         #Erstellung eines Buttens mit Textinputmöglichkeit. Input kommt von button.py
-        PLAY_BACK = Button(image=None, pos=(35, 695), 
+        PLAY_BACK = Button(image=None, pos=(45, 695), 
             text_input="Back", font=get_font(25), base_color="White", hovering_color="Green")
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
         PLAY_BACK.update(SCREEN)
 
-        START_BUTTON = Button(image=None, pos=(1104, 695), 
-            text_input="Start", font=get_font(25), base_color="White", hovering_color="Green")
+        START_BUTTON = Button(image=None, pos=(1210, 695), 
+            text_input="Restart", font=get_font(25), base_color="White", hovering_color="Green")
         START_BUTTON.changeColor(PLAY_MOUSE_POS)
         START_BUTTON.update(SCREEN)
         #Ausführung von Anweisungen, durch bestimmte Interaktionen, wie Mausklick auf einer bestimmten Position. Import von button.py und pygame.
@@ -1614,24 +1686,47 @@ def play_soccercards():
                     play()#...und führe die Funktion aus
                 if CLICK == 0:#Wenn Maustaste gedrückt wird und die Variable den festgelegtem Wert hat...
                     CLICK = 5#...lege den Wert der Variable auf
+                if START_BUTTON.checkForInput(PLAY_MOUSE_POS):
+                    click_sound.play()
+                    play_soccercards()
         clock.tick(60)#Legt fest wie oft die schleife durchlaufen wird (60 x in der Sekunde)
         pygame.display.update()#Bildschirm wird aktualisiert
     
 def skin_select():
     pygame.display.set_caption("Skin Selection")
+    CARD_LOAD()
+    global BG_PSC
     global BG_PSC_SELECT
     global CARD_SELECT
     global CB_SELECT
+    global SPRITE_TP
+    global sprite_sheet_image
+    
+    def get_image(sheet, width, height, scale, color, x, y, symbol, value):
+        image = pygame.Surface((width, height)).convert_alpha()
+        image.blit(sheet, (0, 0), (x, y, width, height))
+        image = pygame.transform.scale(image, (width * scale, height * scale))
+        image.set_colorkey(color)
+        return [image, symbol, value]
 
+    HERZ_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 110, "HERZ", 14)
+    KARO_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 175, "KARO", 14)
+    KREUZ_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 240, "KREUZ", 14)
+    PIK_ASS = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 80, 305, "PIK", 14)
+    frame = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 795, 175, "frame", 55)
+    frame_G1 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 795, 45, "frame", 55)
+    frame_F1 = get_image(sprite_sheet_image, 42, 60, 3, SPRITE_TP, 795, 110, "frame", 55)
+
+    
     while True:
         SKIN_SELECT_MOUSE_POS = pygame.mouse.get_pos()
 
         SCREEN.fill("#2b2a2a")
 
         if CB_SELECT ==0:
-            cbtxt = "Colorblindmode off"
+            cbtxt = "Leonmode off"
         else:
-            cbtxt = "Colorblindmode on"
+            cbtxt = "Leonmode on"
 
         if BG_PSC_SELECT == 0:
             bgtxt = "Soccer BG: Standard"
@@ -1654,6 +1749,17 @@ def skin_select():
             cardtxt = "Cards: Red Prayers"
         else:
             cardtxt = "Cards: Standard"
+
+        BG_PSC_LOAD()
+        CARD_LOAD()
+        SCREEN.blit(HERZ_ASS[0], (160, 136))
+        SCREEN.blit(KARO_ASS[0], (160, 420))
+        SCREEN.blit(KREUZ_ASS[0], (994, 136))
+        SCREEN.blit(PIK_ASS[0], (994, 420))
+        SCREEN.blit(frame[0], (577, 52))
+        SCREEN.blit(frame_G1[0], (350, 52))
+        SCREEN.blit(frame_F1[0], (804, 52))
+
 
         SKIN_SELECT_BACK = Button(image=None, pos=(640, 560), 
                             text_input="Back", font=get_font(60), base_color="WHITE", hovering_color="Green")
@@ -1698,6 +1804,7 @@ def skin_select():
                         CARD_SELECT = 0
                     else:
                         CARD_SELECT += 1
+                    skin_select()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if SKIN_CB_SELECT.checkForInput(SKIN_SELECT_MOUSE_POS):
                     click_sound.play()
@@ -1705,6 +1812,7 @@ def skin_select():
                         CB_SELECT = 0
                     else:
                         CB_SELECT += 1
+                    skin_select()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if SKIN_SELECT_BACK.checkForInput(SKIN_SELECT_MOUSE_POS):
                     click_sound.play()

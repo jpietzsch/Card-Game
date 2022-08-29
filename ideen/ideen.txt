@@ -1,0 +1,9 @@
+Karte vom Player rotieren lassen zum optischen Vergleich mit Reihenkarten
+etwas versetzt, so das man die kleinen Zahlen/Symbole sieht
+außerhalb while neue Liste machen für P1 und 2 Karten mit rotation
+inerhalb while bei der klick-if-bedingung wenn Reihenkarte aufgedeckt und Vergleich mit Symbol/Zahl korrekt ist
+                bei der blit Funktion rotierte Karte bei Übereinstimmung an Position festlegen
+
+bei R11,R12,R13,R21 weiter machen
+von R11,12,13 auf R21 noch rest übergeben und anpassen
+dann auf alle anderen übergeben und anpassen bis goal
