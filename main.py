@@ -130,10 +130,6 @@ def play_soccercards():
     #Variablen innerhalb von der Funktion werden festgelegt
     P1 = 0#P=Player
     P2 = 0
-    G1 = 0#G=Goal
-    G2 = 0
-    F1 = 0#F=Fail
-    F2 = 0
     R11 = 0#R=Reihe
     R12 = 0
     R13 = 0
@@ -1208,17 +1204,33 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(50,486,130,184))
             MOUSE_POS_P1 = True
             if MOUSE_POS_P1 == True:#Image ändert sich, wenn mit Maus über Schaltfläche + klickt.
-                if CLICK == 5:
+                if CLICK == 5 and F_P1 == 0 and G_P1 == 0:
                     P1 = 1
-                    #print(P1)#gibt für kontrollzwecke P1 aus
-                if CLICK == 5 and S1_R1 == 2 and P1 == 1:
-                    P1 = 2 
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                if CLICK == 5 and F_P2 == 1 or CLICK == 5 and G_P2 == 1:
+                        P1 = 2
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif P1 == 0:
+        elif P1 == 0 and F_P1 == 0:
             pygame.draw.rect(SCREEN, green,(50,486,130,184))
-        elif S1_R1 == 2 and P1 == 1:
-            pygame.draw.rect(SCREEN, green,(50,486,130,184))
+        elif P1 == 0 and F_P2 == 1:
+            if F_P1 == 1 or G_P1 == 1:
+                pygame.draw.rect(SCREEN, green,(50,486,130,184))
         else:
             pygame.draw.rect(SCREEN, blue,(50,486,130,184))
             MOUSE_POS_P1 = False
@@ -1227,24 +1239,32 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(1100,486,130,184))
             MOUSE_POS_P2 = True
             if MOUSE_POS_P2 == True:       
-                if CLICK == 5 and F_P1 == 1 and P2 == 0:
-                    P2 = 1
-                    #print(P2)      
+                if CLICK == 5 and F_P2 == 0 and G_P2 == 0:
+                    if G_P1 == 1 or F_P1 == 1:
+                        P2 = 1
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif F_P1 == 1 and P2 == 0:
+        elif P2 == 0 and F_P2 == 0:
+            if F_P1 == 1 or G_P1 == 1:
                 pygame.draw.rect(SCREEN, green,(1100,486,130,184))
         else:
             pygame.draw.rect(SCREEN, blue,(1100,486,130,184))
             MOUSE_POS_P2 = False
         
-        if 50 + 130 > PLAY_MOUSE_POS[0] > 50 and 266 + 184 > PLAY_MOUSE_POS[1] > 266:
+        '''if 50 + 130 > PLAY_MOUSE_POS[0] > 50 and 266 + 184 > PLAY_MOUSE_POS[1] > 266:
             pygame.draw.rect(SCREEN, white,(50,266,130,184))
             MOUSE_POS_G1 = True
             if MOUSE_POS_G1 == True:
                 if CLICK == 5:
                     G1 = 1
-                    #print(G1)      
                 if CLICK != 0:
                     CLICK -= 1
         else:
@@ -1257,7 +1277,6 @@ def play_soccercards():
             if MOUSE_POS_G2 == True:
                 if CLICK == 5:
                     G2 = 1
-                    #print(G2)      
                 if CLICK != 0:
                     CLICK -= 1
         else:
@@ -1269,8 +1288,7 @@ def play_soccercards():
             MOUSE_POS_F1 = True
             if MOUSE_POS_F1 == True:
                 if CLICK == 5:
-                    F1 = 1
-                    #print(F1)      
+                    #F_P1 = 1 #muss noch geändert werden
                 if CLICK != 0:
                     CLICK -= 1
         else:
@@ -1283,12 +1301,11 @@ def play_soccercards():
             if MOUSE_POS_F2 == True:
                 if CLICK == 5:
                     F2 = 1
-                    #print(F2)      
                 if CLICK != 0:
                     CLICK -= 1
         else:
             pygame.draw.rect(SCREEN, blue,(1100,50,130,184))
-            MOUSE_POS_F2 = False
+            MOUSE_POS_F2 = False'''
 ##################### Reihe 1-4 KARTEN ###########################
 #R1
         if 208 + 184 > PLAY_MOUSE_POS[0] > 208 and 134 + 130 > PLAY_MOUSE_POS[1] > 134:
@@ -1298,16 +1315,31 @@ def play_soccercards():
                 if CLICK == 5 and P1 == 1 and S1_R1 == 0 and F_P1 == 0:
                     R11 = 1
                     S1_R1 = 1
-                    #print(R11)
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
                     if CHECKP1_K1_R11 == 0:
                         F_P1 = 1
                         S1_R1 = 0
+                        S2_R1 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
 
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0:
-                pygame.draw.rect(SCREEN, green,(208,134,184,130))
-        elif R11 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0:
+        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, green,(208,134,184,130))
+        elif R11 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0 and S2_R3 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, red,(208,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(208,134,184,130))
@@ -1319,16 +1351,31 @@ def play_soccercards():
                 if CLICK == 5 and P1 == 1 and S1_R1 == 0 and F_P1 == 0:
                     R12 = 1
                     S1_R1 = 1
-                    #print(R12)
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
                     if CHECKP1_K1_R12 == 0:
                         F_P1 = 1
                         S1_R1 = 0
+                        S2_R1 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
      
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0:
+        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
                 pygame.draw.rect(SCREEN, green,(208,294,184,130))
-        elif R12 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0:
+        elif R12 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0 and S2_R3 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, red,(208,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(208,294,184,130))
@@ -1341,16 +1388,31 @@ def play_soccercards():
                 if CLICK == 5 and P1 == 1 and S1_R1 == 0 and F_P1 == 0:
                     R13 = 1
                     S1_R1 = 1
-                    #print(R13)
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
                     if CHECKP1_K1_R13 == 0:
                         F_P1 = 1
                         S1_R1 = 0
+                        S2_R1 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
 
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0:
+        elif S1_R1 == 0 and P1 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, green,(208,454,184,130))
-        elif R13 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0:
+        elif R13 == 1 and F_P1 == 1 and P2 == 0 and S2_R2 == 0 and S2_R3 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, red,(208,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(208,454,184,130))
@@ -1363,17 +1425,31 @@ def play_soccercards():
                 if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0 and F_P1 == 0:
                     R21 = 1
                     S1_R2 = 1
-                    #print(R13)
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
                     if CHECKP1_K1_R21 == 0:
                         F_P1 = 1
                         S1_R2 = 0
                         S2_R2 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
 
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R2 == 0 and S1_R1 == 1 and F_P1 == 0:
+        elif S1_R2 == 0 and S1_R1 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
                 pygame.draw.rect(SCREEN, green,(431,134,184,130))
-        elif R21 == 1 and F_P1 == 1 and P2 == 0 and S1_R3 == 0:
+        elif R21 == 1 and F_P1 == 1 and P2 == 0 and S2_R3 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, red,(431,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(431,134,184,130))
@@ -1383,19 +1459,35 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(431,294,184,130))
             MOUSE_POS_R22 = True
             if MOUSE_POS_R22 == True:
-                if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0:
+                if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0 and F_P1 == 0:
                     R22 = 1
                     S1_R2 = 1
-                    #print(R22)
-                if CLICK == 5 and S1_R3 == 2 and R22 == 0 and S1_R2 == 1:
-                    R22 = 1
-                    S1_R2 = 2      
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R22 == 0:
+                        F_P1 = 1
+                        S1_R2 = 0
+                        S2_R2 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 1 and S1_R2 == 0:
+        elif S1_R2 == 0 and S1_R1 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
                 pygame.draw.rect(SCREEN, green,(431,294,184,130))
-        elif S1_R3 == 2 and R22 == 0 and S1_R2 == 1:
-            pygame.draw.rect(SCREEN, green,(431,294,184,130))
+        elif R22 == 1 and F_P1 == 1 and P2 == 0 and S2_R3 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(431,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(431,294,184,130))
             MOUSE_POS_R22 = False
@@ -1404,40 +1496,100 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(431,454,184,130))
             MOUSE_POS_R23 = True
             if MOUSE_POS_R23 == True:
-                if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0:
+                if CLICK == 5 and S1_R1 == 1 and S1_R2 == 0 and F_P1 == 0:
                     R23 = 1
                     S1_R2 = 1
-                    #print(R23)
-                if CLICK == 5 and S1_R3 == 2 and R23 == 0 and S1_R2 == 1:
-                    R23 = 1
-                    S1_R2 = 2     
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R23 == 0:
+                        F_P1 = 1
+                        S1_R2 = 0
+                        S2_R2 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R1 == 1 and S1_R2 == 0:
-                pygame.draw.rect(SCREEN, green,(431,454,184,130))
-        elif S1_R3 == 2 and R23 == 0 and S1_R2 == 1:
+        elif S1_R2 == 0 and S1_R1 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, green,(431,454,184,130))
+        elif S1_R2 == 0 and P2 == 1 and F_P2 == 0 and G_P2 == 0 and S1_R3 == 1:
+            pygame.draw.rect(SCREEN, green,(431,454,184,130))
+        elif R23 == 1 and F_P1 == 1 and P2 == 0 and S2_R3 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(431,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(431,454,184,130))
             MOUSE_POS_R23 = False
-#R3
+#R3     
         if 669 + 184 > PLAY_MOUSE_POS[0] > 669 and 134 + 130 > PLAY_MOUSE_POS[1] > 134:
             pygame.draw.rect(SCREEN, white,(669,134,184,130))
             MOUSE_POS_R31 = True
             if MOUSE_POS_R31 == True:
-                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0:
+                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0 and F_P1 == 0:
                     R31 = 1
                     S1_R3 = 1
-                    #print(R31)
-                if CLICK == 5 and S1_R4 == 2 and R31 == 0 and S1_R3 == 1:
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R31 == 0:
+                        F_P1 = 1
+                        S1_R3 = 0
+                        S2_R3 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                if CLICK == 5 and S1_R4 == 1 and R31 == 0 and S1_R3 == 0 and F_P2 == 0:
                     R31 = 1
-                    S1_R3 = 2      
+                    S1_R3 = 1
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP2_K1_R31 == 0:
+                        F_P2 = 1
+                        S1_R3 = 0
+                        S2_R3 = 2
+                        P2 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                         
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R2 == 1 and S1_R3 == 0:
-                pygame.draw.rect(SCREEN, green,(669,134,184,130))
-        elif S1_R4 == 2 and R31 == 0 and S1_R3 == 1:
+        elif S1_R3 == 0 and S1_R2 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, green,(669,134,184,130))
+        elif S1_R3 == 0 and P2 == 1 and F_P2 == 0 and G_P2 == 0 and S1_R4 == 1:
+            pygame.draw.rect(SCREEN, green,(669,134,184,130))
+        elif R31 == 1 and F_P1 == 1 and P2 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(669,134,184,130))
+        elif R31 == 1 and F_P2 == 1 and P1 == 0 and S2_R2 != 2:
+            pygame.draw.rect(SCREEN, red,(669,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(669,134,184,130))
             MOUSE_POS_R31 = False
@@ -1446,19 +1598,61 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(669,294,184,130))
             MOUSE_POS_R32 = True
             if MOUSE_POS_R32 == True:
-                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0:
+                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0 and F_P1 == 0:
                     R32 = 1
                     S1_R3 = 1
-                    #print(R32)
-                if CLICK == 5 and S1_R4 == 2 and R32 == 0 and S1_R3 == 1:
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R32 == 0:
+                        F_P1 = 1
+                        S1_R3 = 0
+                        S2_R3 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                if CLICK == 5 and S1_R4 == 1 and R32 == 0 and S1_R3 == 0 and F_P2 == 0:
                     R32 = 1
-                    S1_R3 = 2      
+                    S1_R3 = 1
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP2_K1_R32 == 0:
+                        F_P2 = 1
+                        S1_R3 = 0
+                        S2_R3 = 2
+                        P2 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R2 == 1 and S1_R3 == 0:
-                pygame.draw.rect(SCREEN, green,(669,294,184,130))
-        elif S1_R4 == 2 and R32 == 0 and S1_R3 == 1:
+        elif S1_R3 == 0 and S1_R2 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, green,(669,294,184,130))
+        elif S1_R3 == 0 and P2 == 1 and F_P2 == 0 and G_P2 == 0 and S1_R4 == 1:
+            pygame.draw.rect(SCREEN, green,(669,294,184,130))
+        elif R32 == 1 and F_P1 == 1 and P2 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(669,294,184,130))
+        elif R32 == 1 and F_P2 == 1 and P1 == 0 and S2_R2 != 2:
+            pygame.draw.rect(SCREEN, red,(669,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(669,294,184,130))
             MOUSE_POS_R32 = False
@@ -1467,19 +1661,61 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(669,454,184,130))
             MOUSE_POS_R33 = True
             if MOUSE_POS_R33 == True:
-                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0:
+                if CLICK == 5 and S1_R2 == 1 and S1_R3 == 0 and F_P1 == 0:
                     R33 = 1
                     S1_R3 = 1
-                    #print(R33)
-                if CLICK == 5 and S1_R4 == 2 and R33 == 0 and S1_R3 == 1:
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R33 == 0:
+                        F_P1 = 1
+                        S1_R3 = 0
+                        S2_R3 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                if CLICK == 5 and S1_R4 == 1 and R33 == 0 and S1_R3 == 0 and F_P2 == 0:
                     R33 = 1
-                    S1_R3 = 2
+                    S1_R3 = 1
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP2_K1_R33 == 0:
+                        F_P2 = 1
+                        S1_R3 = 0
+                        S2_R3 = 2
+                        P2 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R2 == 1 and S1_R3 == 0:
-                pygame.draw.rect(SCREEN, green,(669,454,184,130))
-        elif S1_R4 == 2 and R33 == 0 and S1_R3 == 1:
+        elif S1_R3 == 0 and S1_R2 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, green,(669,454,184,130))
+        elif S1_R3 == 0 and P2 == 1 and F_P2 == 0 and G_P2 == 0 and S1_R4 == 1:
+            pygame.draw.rect(SCREEN, green,(669,454,184,130))
+        elif R33 == 1 and F_P1 == 1 and P2 == 0 and S2_R4 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(669,454,184,130))
+        elif R33 == 1 and F_P2 == 1 and P1 == 0 and S2_R2 != 2:
+            pygame.draw.rect(SCREEN, red,(669,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(669,454,184,130))
             MOUSE_POS_R33 = False
@@ -1488,19 +1724,73 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(892,134,184,130))
             MOUSE_POS_R41 = True
             if MOUSE_POS_R41 == True:
-                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0:
+                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0 and F_P1 == 0:
                     R41 = 1
                     S1_R4 = 1
-                    #print(R41)
-                if CLICK == 5 and P2 == 1 and R41 == 0 and S1_R4 == 1:
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R41 == 0:
+                        F_P1 = 1
+                        S1_R4 = 0
+                        S2_R4 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    else:
+                        G_P1 = 1
+                        S1_R4 = 0
+                        S2_R4 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                if CLICK == 5 and P2 == 1 and R41 == 0 and S1_R4 == 0 and F_P2 == 0:
                     R41 = 1
-                    S1_R4 = 2
+                    S1_R4 = 1
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP2_K1_R41 == 0:
+                        F_P2 = 1
+                        S1_R4 = 0
+                        S2_R4 = 2
+                        P2 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R3 == 1 and S1_R4 == 0:
-                pygame.draw.rect(SCREEN, green,(892,134,184,130))
-        elif P2 == 1 and R41 == 0 and S1_R4 == 1:
-                pygame.draw.rect(SCREEN, green,(892,134,184,130))
+        elif S1_R4 == 0 and S1_R3 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, green,(892,134,184,130))
+        elif S1_R4 == 0 and P2 == 1 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, green,(892,134,184,130))
+        elif R41 == 1 and F_P1 == 1 and P2 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(892,134,184,130))
+        elif R41 == 1 and F_P2 == 1 and P1 == 0 and S2_R3 != 2:
+            pygame.draw.rect(SCREEN, red,(892,134,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(892,134,184,130))
             MOUSE_POS_R41 = False
@@ -1509,19 +1799,73 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(892,294,184,130))
             MOUSE_POS_R42 = True
             if MOUSE_POS_R42 == True:
-                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0:
+                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0 and F_P1 == 0:
                     R42 = 1
                     S1_R4 = 1
-                    #print(R42)
-                if CLICK == 5 and P2 == 1 and R42 == 0 and S1_R4 == 1:
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R42 == 0:
+                        F_P1 = 1
+                        S1_R4 = 0
+                        S2_R4 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    else:
+                        G_P1 = 1
+                        S1_R4 = 0
+                        S2_R4 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                if CLICK == 5 and P2 == 1 and R42 == 0 and S1_R4 == 0 and F_P2 == 0:
                     R42 = 1
-                    S1_R4 = 2     
+                    S1_R4 = 1
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP2_K1_R42 == 0:
+                        F_P2 = 1
+                        S1_R4 = 0
+                        S2_R4 = 2
+                        P2 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R3 == 1 and S1_R4 == 0:
-                pygame.draw.rect(SCREEN, green,(892,294,184,130))
-        elif P2 == 1 and R42 == 0 and S1_R4 == 1:
+        elif S1_R4 == 0 and S1_R3 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, green,(892,294,184,130))
+        elif S1_R4 == 0 and P2 == 1 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, green,(892,294,184,130))
+        elif R42 == 1 and F_P1 == 1 and P2 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(892,294,184,130))
+        elif R42 == 1 and F_P2 == 1 and P1 == 0 and S2_R3 != 2:
+            pygame.draw.rect(SCREEN, red,(892,294,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(892,294,184,130))
             MOUSE_POS_R42 = False
@@ -1530,19 +1874,73 @@ def play_soccercards():
             pygame.draw.rect(SCREEN, white,(892,454,184,130))
             MOUSE_POS_R43 = True
             if MOUSE_POS_R43 == True:
-                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0:
+                if CLICK == 5 and S1_R3 == 1 and S1_R4 == 0 and F_P1 == 0:
                     R43 = 1
                     S1_R4 = 1
-                    #print(R43)
-                if CLICK == 5 and P2 == 1 and R43 == 0 and S1_R4 == 1:
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP1_K1_R43 == 0:
+                        F_P1 = 1
+                        S1_R4 = 0
+                        S2_R4 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    else:
+                        G_P1 = 1
+                        S1_R4 = 0
+                        S2_R4 = 1
+                        P1 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                if CLICK == 5 and P2 == 1 and R43 == 0 and S1_R4 == 0 and F_P2 == 0:
                     R43 = 1
-                    S1_R4 = 2
+                    S1_R4 = 1
+                    print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                    print("R11:", R11, "R12:", R12, "R13:", R13)
+                    print("R21:", R21, "R22:", R22, "R23:", R23)
+                    print("R31:", R31, "R32:", R32, "R33:", R33)
+                    print("R41:", R41, "R42:", R42, "R43:", R43)
+                    print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                    print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+                    if CHECKP2_K1_R43 == 0:
+                        F_P2 = 1
+                        S1_R4 = 0
+                        S2_R4 = 2
+                        P2 = 0
+                        print("P1:", P1, "P2:", P2, "F_P1:", F_P1, "F_P2:", F_P2, "G_P1:", G_P1, "G_P2:", G_P2)
+                        print("R11:", R11, "R12:", R12, "R13:", R13)
+                        print("R21:", R21, "R22:", R22, "R23:", R23)
+                        print("R31:", R31, "R32:", R32, "R33:", R33)
+                        print("R41:", R41, "R42:", R42, "R43:", R43)
+                        print("S1_R1:", S1_R1, "S1_R2:", S1_R2, "S1_R3:", S1_R3, "S1_R4:", S1_R4)
+                        print("S2_R1:", S2_R1, "S2_R2:", S2_R2, "S2_R3:", S2_R3, "S2_R4:", S2_R4)
+
                 if CLICK != 0:
                     CLICK -= 1
-        elif S1_R3 == 1 and S1_R4 == 0:
-                pygame.draw.rect(SCREEN, green,(892,454,184,130))
-        elif P2 == 1 and R43 == 0 and S1_R4 == 1:
+        elif S1_R4 == 0 and S1_R3 == 1 and F_P1 == 0 and F_P2 == 0 and G_P1 == 0 and G_P2 == 0:
             pygame.draw.rect(SCREEN, green,(892,454,184,130))
+        elif S1_R4 == 0 and P2 == 1 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, green,(892,454,184,130))
+        elif R43 == 1 and F_P1 == 1 and P2 == 0 and F_P2 == 0 and G_P2 == 0:
+            pygame.draw.rect(SCREEN, red,(892,454,184,130))
+        elif R43 == 1 and F_P2 == 1 and P1 == 0 and S2_R3 != 2:
+            pygame.draw.rect(SCREEN, red,(892,454,184,130))
         else:
             pygame.draw.rect(SCREEN, blue,(892,454,184,130))
             MOUSE_POS_R43 = False        
@@ -1593,25 +1991,25 @@ def play_soccercards():
         elif P2 == 10:
             SCREEN.blit(CARDS_P2[9][0], (1102, 488))
 
-        if G1 == 0:
+        if G_P1 == 0:
             SCREEN.blit(frame_G1[0], (52, 268))
-        elif G1 == 1:
-            SCREEN.blit(CARDS_P1[1][0], (52, 268))
+        elif G_P1 == 1:
+            SCREEN.blit(CARDS_P1[0][0], (52, 268))
 
-        if G2 == 0:
+        if G_P2 == 0:
             SCREEN.blit(frame_G2[0], (1102, 268))
-        elif G2 == 1:
-            SCREEN.blit(CARDS_P2[1][0], (1102, 268))
+        elif G_P2 == 1:
+            SCREEN.blit(CARDS_P2[0][0], (1102, 268))
 
-        if F1 == 0:
+        if F_P1 == 0:
             SCREEN.blit(frame_F1[0], (52, 52))
-        elif F1 == 1:
-            SCREEN.blit(CARDS_P1[2][0], (52, 52))
+        elif F_P1 == 1:
+            SCREEN.blit(CARDS_P1[0][0], (52, 52))
 
-        if F2 == 0:
+        if F_P2 == 0:
             SCREEN.blit(frame_F2[0], (1102, 52))
-        elif F2 == 1:
-            SCREEN.blit(CARDS_P2[2][0], (1102, 52))
+        elif F_P2 == 1:
+            SCREEN.blit(CARDS_P2[0][0], (1102, 52))
 ##################### Reihe 1-4 KARTEN ###########################
 #R1
         if R11 == 0:
@@ -1671,7 +2069,7 @@ def play_soccercards():
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
         PLAY_BACK.update(SCREEN)
 
-        START_BUTTON = Button(image=None, pos=(1210, 695), 
+        START_BUTTON = Button(image=None, pos=(150, 695), 
             text_input="Restart", font=get_font(25), base_color="White", hovering_color="Green")
         START_BUTTON.changeColor(PLAY_MOUSE_POS)
         START_BUTTON.update(SCREEN)
@@ -1687,8 +2085,14 @@ def play_soccercards():
                 if CLICK == 0:#Wenn Maustaste gedrückt wird und die Variable den festgelegtem Wert hat...
                     CLICK = 5#...lege den Wert der Variable auf
                 if START_BUTTON.checkForInput(PLAY_MOUSE_POS):
-                    click_sound.play()
-                    play_soccercards()
+                    #click_sound.play()
+                    #play_soccercards()
+                    P2 = 1 
+                    F_P1 = 1
+                    R12 = 1
+                    R43 = 1
+                    S1_R4 = 1
+                    S2_R1 = 1
         clock.tick(60)#Legt fest wie oft die schleife durchlaufen wird (60 x in der Sekunde)
         pygame.display.update()#Bildschirm wird aktualisiert
     
